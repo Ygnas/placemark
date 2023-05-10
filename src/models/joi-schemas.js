@@ -39,6 +39,7 @@ export const PlacemarkSpec = Joi.object()
     latitude: Joi.number().allow("").optional().example(12),
     longitude: Joi.number().allow("").optional().example(12),
     categoryid: IdSpec,
+    img:  Joi.string().allow("").optional(),
   })
   .label("Placemark");
 
