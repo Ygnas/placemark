@@ -39,13 +39,14 @@ export const PlacemarkSpec = Joi.object()
     latitude: Joi.number().allow("").optional().example(12),
     longitude: Joi.number().allow("").optional().example(12),
     categoryid: IdSpec,
+    img:  Joi.string().allow("").optional(),
   })
   .label("Placemark");
 
 export const PlacemarkSpecPlus = PlacemarkSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
-  img: Joi.string().allow("").optional(),
+  img: Joi.array().items(Joi.string().allow("").optional()),
 }).label("PlacemarkPlus");
 
 export const PlacemarkArraySpec = Joi.array().items(PlacemarkSpecPlus).label("PlacemarkArray");

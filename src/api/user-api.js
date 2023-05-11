@@ -1,6 +1,7 @@
 import Boom from "@hapi/boom";
+import bcrypt from "bcrypt";
 import { db } from "../models/db.js";
-import { UserCredentialsSpec, UserSpec, UserSpecPlus, IdSpec, UserArray, JwtAuth } from "../models/joi-schemas.js";
+import { UserCredentialsSpec, UserSpec, UserSpecPlus, IdSpec, UserArray, JwtAuth} from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
@@ -21,6 +22,28 @@ export const userApi = {
     description: "Get all userApi",
     notes: "Returns details of all userApi",
     response: { schema: UserArray, failAction: validationError },
+  },
+
+  findUser: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const users = await db.userStore.getAllUsers();
+        users.forEach((user) => {
+          delete user.password;
+          delete user.email;
+          delete user.lastName;
+        });
+        return users;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    description: "Get amount of users and types",
+    notes: "Returns number of users and types",
   },
 
   findOne: {
@@ -90,7 +113,9 @@ export const userApi = {
         if (!user) {
           return Boom.unauthorized("User not found");
         }
-        if (user.password !== request.payload.password) {
+        const passwordsMatch = await bcrypt.compare(request.payload.password, user.password);
+        if (!user || !passwordsMatch) {
+        // if (user.password !== request.payload.password) {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
@@ -102,7 +127,7 @@ export const userApi = {
     tags: ["api"],
     description: "Authenticate  a User",
     notes: "If user has valid email/password, create and return a JWT token",
-    validate: { payload: UserCredentialsSpec, failAction: validationError },
+    // validate: { payload: UserCredentialsSpec, failAction: validationError },
     response: { schema: JwtAuth, failAction: validationError },
   },
 };

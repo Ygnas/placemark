@@ -7,6 +7,7 @@ export const apiRoutes = [
   { method: "POST", path: "/api/users", config: userApi.create },
   { method: "DELETE", path: "/api/users", config: userApi.deleteAll },
   { method: "GET", path: "/api/users/{id}", config: userApi.findOne },
+  { method: "GET", path: "/api/users/safe", config: userApi.findUser },
 
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 
@@ -21,4 +22,5 @@ export const apiRoutes = [
   { method: "POST", path: "/api/categorys/{id}/placemarks", config: placemarkApi.create },
   { method: "DELETE", path: "/api/placemarks", config: placemarkApi.deleteAll },
   { method: "DELETE", path: "/api/placemarks/{id}", config: placemarkApi.deleteOne },
+  { method: "POST", path: "/api/placemarks/{id}/deleteimage", config: placemarkApi.deleteImage },
 ];
