@@ -109,11 +109,7 @@ export const placemarkApi = {
     },
     handler: async function (request, h) {
       try {
-        const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
-        if (!placemark) {
-          return Boom.notFound("No Placemark with this id");
-        }
-        placemark.img = "";
+        const placemark = request.payload
         await db.placemarkStore.updatePlacemark(placemark, placemark);
         return h.response(placemark);
       } catch (err) {
