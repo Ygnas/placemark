@@ -45,38 +45,43 @@ export const seedData = {
   placemark: {
     _model : "Placemark",
     placemark_1 : {
-      name: "Best lake",
+      name: "River Lee by The Lee Fields",
       description: "Best lake in the world",
-      latitude: 10,
-      longitude: 10,
+      latitude: 51.89417519799009,
+      longitude: -8.516575998303795,
       categoryid: "->category.fishing"
     },
     placemark_2 : {
-      name: "Best river",
-      description: "Best river in the world",
-      latitude: 10,
-      longitude: 10,
+      name: "Tony Payne Fishing Adventures",
+      description: "Relaxing Island fishing on one of our famous islands on the Lakes of Killarney, Our experienced guide Tony Payne will make your adventure the best it can be. Tony is a Killarney man born and raised and was fishing since the age of five. His vast knowledge of all the Lakes and Rivers of Killarney, Kerry and Munster and access to secluded and secret fishing locations makes his tours an exclusive & popular attraction. Perfect for all boat and fishing experiences on your holiday in beautiful Kerry.",
+      latitude: 52.038040032117905,
+      longitude: -9.500613252231119,
+      img: [
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683750385/h1b2ylidatdmi1ggydcg.jpg",
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683750395/fau1jjdwcdba8brsjwtn.jpg",
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683750379/ut1mbhr1ggidjjvtvb0u.jpg",
+      ],
       categoryid: "->category.fishing"
     },
     placemark_3 : {
-      name: "Best sea",
-      description: "Best sea in the world",
-      latitude: 10,
-      longitude: 10,
+      name: "Kells Bay Rocks Fishing Spot",
+      description: "There is good sea fishing from the rocks and the beach at Kells. Boat outings including Deep Sea can be arranged from Portmagee, Valentia or Ballinskelligs. During the appropriate seasons there is excellent salmon, trout and sea-trout fishing on local lakes and rivers.",
+      latitude: 52.02794289951099,
+      longitude: -10.100598685597022,
       categoryid: "->category.fishing"
     },
     placemark_4 : {
-      name: "Best ocean",
-      description: "Best ocean in the world",
-      latitude: 10,
-      longitude: 10,
+      name: "Crushoa pier",
+      description: "Situated half way between Kinvara and Parkmor, Crushoa pier is protected by the encircling arms of Coisin and Mulroneys Islands. This pier was used primarily for landing, drying and loading seaweed and for harbouring the wooden currachs used for oyster dredging in the local oyster bed. There were many ghosts and hauntings associated with Crushoa.   These stories were told by locals to deter people visiting at night where valuable oysters were guarded from a dug out on the beach (still visible, but blocked up).",
+      latitude: 53.15355240089706,
+      longitude: -8.952862582568276,
       categoryid: "->category.fishing"
     },
     placemark_5 : {
-      name: "Best mountain",
-      description: "Best mountain in the world",
-      latitude: 10,
-      longitude: 10,
+      name: "Gougane Barra",
+      description: "Gougane Barra is a scenic valley and heritage site in the Shehy Mountains of County Cork, Ireland. It is near Ballingeary in the Muskerry Gaeltacht. Gougane Barra is at the source of the River Lee and includes a lake with an oratory built on a small island. It also includes a forest park.",
+      latitude: 51.83940108726646,
+      longitude: -9.314792163382908,
       categoryid: "->category.hiking"
     },
     placemark_6 : {
