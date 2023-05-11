@@ -46,7 +46,7 @@ export const PlacemarkSpec = Joi.object()
 export const PlacemarkSpecPlus = PlacemarkSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
-  img: Joi.string().allow("").optional(),
+  img: Joi.array().items(Joi.string().allow("").optional()),
 }).label("PlacemarkPlus");
 
 export const PlacemarkArraySpec = Joi.array().items(PlacemarkSpecPlus).label("PlacemarkArray");
