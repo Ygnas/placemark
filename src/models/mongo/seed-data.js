@@ -49,6 +49,10 @@ export const seedData = {
       description: "Best lake in the world",
       latitude: 51.89417519799009,
       longitude: -8.516575998303795,
+      img: [
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683815735/2018-05-13-01914-m_jgr65c.jpg",
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683815833/the-river-lee-3_kxv9kd.webp",
+      ],
       categoryid: "->category.fishing"
     },
     placemark_2 : {
@@ -82,21 +86,25 @@ export const seedData = {
       description: "Gougane Barra is a scenic valley and heritage site in the Shehy Mountains of County Cork, Ireland. It is near Ballingeary in the Muskerry Gaeltacht. Gougane Barra is at the source of the River Lee and includes a lake with an oratory built on a small island. It also includes a forest park.",
       latitude: 51.83940108726646,
       longitude: -9.314792163382908,
+      img: [
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683815427/85g43ztpm0a31_wefdww.jpg",
+        "https://res.cloudinary.com/dnr02gmmq/image/upload/v1683815506/2814367255_36a87f6fa9_b_ls9zrc.jpg",
+      ],
       categoryid: "->category.hiking"
     },
     placemark_6 : {
-      name: "Best hill",
-      description: "Best hill in the world",
-      latitude: 10,
-      longitude: 10,
+      name: "Glenstal Woods",
+      description: "1",
+      latitude: 52.66181059468688,
+      longitude: -8.361273139160753,
       categoryid: "->category.hiking"
     },
     placemark_7 : {
-      name: "Best forest",
-      description: "Best forest in the world",
-      latitude: 10,
-      longitude: 10,
-      categoryid: "->category.camping"
+      name: "Doolin Cliff Walks",
+      description: "1",
+      latitude: 52.998361973837014,
+      longitude: -9.387917099476365,
+      categoryid: "->category.hiking"
     },
     placemark_8 : {
       name: "Best valley",
@@ -119,5 +127,26 @@ export const seedData = {
       longitude: 10,
       categoryid: "->category.snowboarding"
     },
+    placemark_11 : {
+      name: "Cliffs of Moher Walking Trail",
+      description: "Best snow park in the world",
+      latitude: 53.009564376715836,
+      longitude: -9.389989794583638,
+      categoryid: "->category.hiking"
+    },
+    placemark_12 : {
+      name: "Shannon Banks Nature Trail Walk (Green Route)",
+      description: "Best snow park in the world",
+      latitude: 53.412382269689346,
+      longitude: -7.941808160026894,
+      categoryid: "->category.hiking"
+    },
+    placemark_13 : {
+      name: "Bog of Frogs Loop",
+      description: "Best snow park in the world",
+      latitude: 53.38865379975943,
+      longitude: -6.074491551965968,
+      categoryid: "->category.hiking"
+    }
   },
 };
