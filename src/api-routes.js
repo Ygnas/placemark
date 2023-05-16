@@ -11,6 +11,7 @@ export const apiRoutes = [
   { method: "GET", path: "/api/users/safe", config: userApi.findUser },
 
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
+  { method: "POST", path: "/api/users/authenticate/google", config: userApi.signupgoogle },
 
   { method: "POST", path: "/api/categorys", config: categoryApi.create },
   { method: "DELETE", path: "/api/categorys", config: categoryApi.deleteAll },

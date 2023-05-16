@@ -2,9 +2,8 @@ import Boom from "@hapi/boom";
 import axios from "axios";
 
 let placemark;
-const weatherApiKey= process.env.weatherApi
+const weatherApiKey = process.env.weatherApi;
 export const weatherApi = {
-  baseUrl: "https://api.openweathermap.org/data/2.5",
   getWeather: {
     auth: {
       strategy: "jwt",
@@ -12,11 +11,13 @@ export const weatherApi = {
     handler: async function (request, h) {
       try {
         placemark = request.payload;
-        const weather = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${placemark.latitude}&lon=${placemark.longitude}&units=metric&appid=${weatherApiKey}`);
+        const weather = await axios.get(
+          `https://1131351365.azurewebsites.net/api/HttpTrigger1?code=oj58Tx-2ZpC4WUq4RnQ5V76n1y59j5d5CDTx2VXF_aq1AzFu8VEvVA==&latitude=${placemark.latitude}&longitude=${placemark.longitude}`
+        );
 
         const weatherData = {
           name: weather.data.city.name,
-          sunrise:  weather.data.city.sunrise,
+          sunrise: weather.data.city.sunrise,
           sunset: weather.data.city.sunset,
           icon: `https://openweathermap.org/img/wn/${weather.data.list[0].weather[0].icon}.png`,
           current: {
@@ -28,7 +29,7 @@ export const weatherApi = {
             temp_min: weather.data.list[0].main.temp_min,
           },
           list: weather.data.list,
-        }
+        };
         return weatherData;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
@@ -39,4 +40,4 @@ export const weatherApi = {
     description: "Get's weather info for a single Placemark",
     notes: "Returns weather data",
   },
-}
+};
