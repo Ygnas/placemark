@@ -1,6 +1,7 @@
 import { userApi } from "./api/user-api.js";
 import { categoryApi } from "./api/category-api.js";
 import { placemarkApi } from "./api/placemark-api.js";
+import { weatherApi } from "./api/weather-api.js";
 
 export const apiRoutes = [
   { method: "GET", path: "/api/users", config: userApi.find },
@@ -10,6 +11,7 @@ export const apiRoutes = [
   { method: "GET", path: "/api/users/safe", config: userApi.findUser },
 
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
+  { method: "POST", path: "/api/users/authenticate/google", config: userApi.signupgoogle },
 
   { method: "POST", path: "/api/categorys", config: categoryApi.create },
   { method: "DELETE", path: "/api/categorys", config: categoryApi.deleteAll },
@@ -23,4 +25,6 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/placemarks", config: placemarkApi.deleteAll },
   { method: "DELETE", path: "/api/placemarks/{id}", config: placemarkApi.deleteOne },
   { method: "POST", path: "/api/placemarks/{id}/deleteimage", config: placemarkApi.deleteImage },
+
+  { method: "POST", path: "/api/placemark/weather", config: weatherApi.getWeather },
 ];

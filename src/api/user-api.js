@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
 import bcrypt from "bcrypt";
 import { db } from "../models/db.js";
-import { UserCredentialsSpec, UserSpec, UserSpecPlus, IdSpec, UserArray, JwtAuth} from "../models/joi-schemas.js";
+import { UserCredentialsSpec, UserSpec, UserSpecPlus, IdSpec, UserArray, JwtAuth } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
@@ -115,7 +115,7 @@ export const userApi = {
         }
         const passwordsMatch = await bcrypt.compare(request.payload.password, user.password);
         if (!user || !passwordsMatch) {
-        // if (user.password !== request.payload.password) {
+          // if (user.password !== request.payload.password) {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
@@ -129,5 +129,26 @@ export const userApi = {
     notes: "If user has valid email/password, create and return a JWT token",
     // validate: { payload: UserCredentialsSpec, failAction: validationError },
     response: { schema: JwtAuth, failAction: validationError },
+  },
+
+  signupgoogle: {
+    auth: false,
+    handler: async function (request, h) {
+      const user = {
+        firstName: request.payload.given_name,
+        lastName: request.payload.family_name,
+        email: request.payload.email,
+        password: "",
+        admin: false,
+      };
+
+      if (!(await db.userStore.getUserByEmail(user.email))) {
+        await db.userStore.addUser(user);
+      }
+
+      const userFromDB = await db.userStore.getUserByEmail(user.email);
+      const token = createToken(userFromDB);
+      return h.response({ success: true, token: token, id: userFromDB._id });
+    },
   },
 };
