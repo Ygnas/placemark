@@ -5,6 +5,8 @@ import { UserCredentialsSpec, UserSpec, UserSpecPlus, IdSpec, UserArray, JwtAuth
 import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
+const saltRounds = 10;
+
 export const userApi = {
   find: {
     auth: {
@@ -72,9 +74,11 @@ export const userApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const user = await db.userStore.addUser(request.payload);
-        if (user) {
-          return h.response(user).code(201);
+        const user = request.payload;
+        user.password = await bcrypt.hash(user.password, saltRounds);
+        const newUser = await db.userStore.addUser(user);
+        if (newUser) {
+          return h.response(newUser).code(201);
         }
         return Boom.badImplementation("error creating user");
       } catch (err) {
@@ -115,7 +119,6 @@ export const userApi = {
         }
         const passwordsMatch = await bcrypt.compare(request.payload.password, user.password);
         if (!user || !passwordsMatch) {
-          // if (user.password !== request.payload.password) {
           return Boom.unauthorized("Invalid password");
         }
         const token = createToken(user);
